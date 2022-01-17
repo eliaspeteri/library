@@ -34,7 +34,7 @@ The original task was to create a single-page web application (SPA) which manage
 
 ## Stack
 
-As per original specification, the UI is created with React, and the author chooses to specifically use this framework in combination with TypeScript. Backend will be provided by a combination of MongoDB, Node.js and Express.js. For article 7 of specifications, Concurrently shall be used in order to launch both backend and frontend into a single terminal.
+As per original specification, the UI is created with React through Next.js, and the author chooses to specifically use this framework in combination with TypeScript. Semantic UI React may be used for styling. Axios will be used to fetch data from the server. Backend will be provided by a combination of MongoDB, Node.js and Express.js. For article 7 of specifications, Concurrently shall be used in order to launch both backend and frontend into a single terminal.
 
 ## Installation
 
