@@ -1,7 +1,8 @@
 import Head from "next/head"
 import Layout from "../components/Layout"
-import { getSortedBooksData } from "../lib/books"
-import { Container, Divider, Header } from "semantic-ui-react"
+import Book from "../components/Book"
+import { getAllBooksData } from "../lib/books"
+import { Container, Header } from "semantic-ui-react"
 
 export default function Books({ allBooksData }) {
   return (
@@ -13,13 +14,7 @@ export default function Books({ allBooksData }) {
       <Container>
         <Header as="h1">Books</Header>
         {allBooksData.map(({ author, description, title }) => (
-          <Container text fluid>
-            <Header as="h2">
-              {title} by {author}
-            </Header>
-            {description}
-            <Divider />
-          </Container>
+          <Book author={author} description={description} title={title} />
         ))}
       </Container>
     </Layout>
@@ -27,7 +22,7 @@ export default function Books({ allBooksData }) {
 }
 
 export async function getStaticProps() {
-  const allBooksData = getSortedBooksData()
+  const allBooksData = getAllBooksData()
   return {
     props: {
       allBooksData,
