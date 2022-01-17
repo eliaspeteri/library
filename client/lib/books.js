@@ -4,7 +4,7 @@ import matter from "gray-matter"
 
 const booksDirectory = path.join(process.cwd(), "books")
 
-export function getSortedBooksData() {
+export function getAllBooksData() {
   // Get filenames in /books
   const fileNames = fs.readdirSync(booksDirectory)
   const allBooksData = fileNames.map((fileName) => {
@@ -25,4 +25,30 @@ export function getSortedBooksData() {
     }
   })
   return allBooksData
+}
+
+export function getAllBookIds() {
+  const fileNames = fs.readdirSync(booksDirectory)
+
+  return fileNames.map((fileName) => {
+    return {
+      params: {
+        id: fileName.replace(/\.md$/, ""),
+      },
+    }
+  })
+}
+
+export function getBookData(id) {
+  const fullPath = path.join(booksDirectory, `${id}.md`)
+  const fileContents = fs.readFileSync(fullPath, "utf8")
+
+  // Parse metadata with gray-matter
+  const matterResult = matter(fileContents)
+
+  // Return data with id
+  return {
+    id,
+    ...matterResult.data,
+  }
 }
