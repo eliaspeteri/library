@@ -1,6 +1,6 @@
 import { Button, Container, Divider, Form, Header } from "semantic-ui-react"
 
-export default function BookForm() {
+export default function BookForm(): JSX.Element {
   return (
     <Container>
       <Header as="h1">New book</Header>

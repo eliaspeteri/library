@@ -1,7 +1,19 @@
 import Link from "next/link"
 import { Container, Divider, Header } from "semantic-ui-react"
 
-export default function Book({ author, description, id, title }) {
+interface Props {
+  author: string
+  description: string
+  id: string
+  title: string
+}
+
+export default function Book({
+  author,
+  description,
+  id,
+  title,
+}: Props): JSX.Element {
   return (
     <Container text fluid>
       <Link href={`/books/${id}`}>
@@ -12,6 +24,7 @@ export default function Book({ author, description, id, title }) {
         </a>
       </Link>
       {description}
+      <Divider />
     </Container>
   )
 }

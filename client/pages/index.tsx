@@ -1,10 +1,10 @@
 /* Next.js components */
 import Head from "next/head"
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 
-export default function Home({ allBooksData }) {
+export default function Home(): JSX.Element {
   return (
-    <Layout home>
+    <Layout>
       <div className="container">
         <Head>
           <title>Library</title>

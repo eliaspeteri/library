@@ -1,9 +1,11 @@
-import Layout from "../../components/layout"
+import Layout from "../../components/Layout"
 import Book from "../../components/Book"
 import { getAllBookIds, getBookData } from "../../lib/books"
 import Head from "next/head"
+import { GetStaticProps, GetStaticPaths } from "next"
+import { IBook } from "../../types"
 
-export default ({ bookData }) => {
+export default function ({ bookData }: { bookData: IBook }): JSX.Element {
   return (
     <Layout>
       <Head>
@@ -19,7 +21,10 @@ export default ({ bookData }) => {
   )
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async (): Promise<{
+  paths: any
+  fallback: any
+}> => {
   // Return a list of possible values for id
   const paths = getAllBookIds()
   return {
@@ -28,9 +33,11 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({ params }) {
+export const getStaticProps: GetStaticProps = async ({
+  params,
+}): Promise<{ props: { bookData: any } }> => {
   // Fetch necessary data for the book using params.id
-  const bookData = getBookData(params.id)
+  const bookData: IBook = getBookData(params.id as string)
   return {
     props: {
       bookData,
