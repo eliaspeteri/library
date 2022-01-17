@@ -13,8 +13,14 @@ export default function Books({ allBooksData }) {
 
       <Container>
         <Header as="h1">Books</Header>
-        {allBooksData.map(({ author, description, title }) => (
-          <Book author={author} description={description} title={title} />
+        {allBooksData.map(({ author, description, id, title }) => (
+          <Book
+            author={author}
+            description={description}
+            id={id}
+            title={title}
+            key={id}
+          />
         ))}
       </Container>
     </Layout>
