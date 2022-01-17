@@ -16,7 +16,7 @@ export function Navbar(): JSX.Element {
         </Link>
       </Item>
       <Item>
-        <Link href="/addbook">
+        <Link href="/newbook">
           <a>New book</a>
         </Link>
       </Item>
