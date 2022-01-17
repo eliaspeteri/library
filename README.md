@@ -12,7 +12,7 @@
 
 ## Opening words
 
-This full-stack application has been created as a programming exercise for recruit purposes. No support is provided beyond the troubleshooting section listed further below, and use of the application is at own risk.
+This full-stack application depicting a regular library collection has been created as a programming exercise for recruit purposes. No support is provided beyond the troubleshooting section listed further below, and use of the application is at own risk.
 
 ## Specifications
 
