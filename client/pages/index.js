@@ -1,6 +1,5 @@
 /* Next.js components */
 import Head from "next/head"
-import Link from "next/link"
 import Layout from "../components/layout"
 
 export default function Home({ allBooksData }) {
@@ -8,7 +7,7 @@ export default function Home({ allBooksData }) {
     <Layout home>
       <div className="container">
         <Head>
-          <title>Create Next App</title>
+          <title>Library</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
       </div>
