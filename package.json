@@ -1,0 +1,41 @@
+{
+  "name": "library",
+  "version": "1.0.0",
+  "description": "This full-stack application depicting a regular library collection has been created as a programming exercise for recruit purposes.",
+  "main": "server/dist/index.js",
+  "engines": {
+    "node": "12.19.0"
+  },
+  "scripts": {
+    "start:production": "npm --prefix ./server/ start",
+    "start:dev": "concurrently --kill-others -c cyan,magenta -n CLIENT,SERVER \"cd client/ && npm start\"\" npm --prefix ./server/ run dev\"",
+    "front:install:build": "cd client/ && npm i && npm run build",
+    "server:install:compile": "cd server && npm i && npm run compile",
+    "preinstall": "npm run front:install:build",
+    "postinstall": "npm run server:install:compile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eliaspeteri/library.git"
+  },
+  "keywords": [
+    "axios",
+    "mongoose",
+    "mongodb",
+    "node",
+    "express",
+    "react",
+    "next",
+    "nextjs",
+    "typescript"
+  ],
+  "author": "Elias Peteri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eliaspeteri/library/issues"
+  },
+  "homepage": "https://github.com/eliaspeteri/library#readme",
+  "devDependencies": {
+    "concurrently": "^7.0.0"
+  }
+}
