@@ -14,6 +14,11 @@ interface Props {
   allBooksData: [BookProps]
 }
 
+/**
+ * Renders a list of books with the author, title and a short blurb
+ * @param allBooksData all books fetched from the database with getStaticProps
+ * @returns JSX.Element
+ */
 export default function Books({ allBooksData }: Props): JSX.Element {
   return (
     <Layout>

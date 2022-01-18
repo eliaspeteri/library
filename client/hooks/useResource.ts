@@ -1,5 +1,10 @@
 import axios, { AxiosResponse } from "axios"
 
+/**
+ * A hook to help with talking to the API through axios.
+ * @param url API url
+ * @returns Object of methods
+ */
 const useResource = (url: string) => {
   const getAll = async () => {
     const res: AxiosResponse = await axios.get(url)

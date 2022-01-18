@@ -8,7 +8,14 @@ interface Props {
   id: string
   title: string
 }
-
+/**
+ * A component to render the details of a single book.
+ * @param author Book author
+ * @param description Book description
+ * @param id Book ID
+ * @param title Book title
+ * @returns JSX.Element
+ */
 export default function Book({
   author,
   description,

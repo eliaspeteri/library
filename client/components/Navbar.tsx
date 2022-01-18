@@ -2,6 +2,10 @@ import React from "react"
 import Link from "next/link"
 import { Item, Menu } from "semantic-ui-react"
 
+/**
+ * A navbar component to ease navigating around the application.
+ * @returns JSX.Element
+ */
 export function Navbar(): JSX.Element {
   return (
     <Menu>

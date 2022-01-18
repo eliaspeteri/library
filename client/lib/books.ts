@@ -5,6 +5,10 @@ import { IBook } from "../types"
 
 const booksDirectory: string = path.join(process.cwd(), "books")
 
+/**
+ * Fetches all the entries in /client/books, will be reimplemented by connection to database instead.
+ * @returns An array of objects with interface of IBook
+ */
 export function getAllBooksData(): IBook[] {
   // Get filenames in /books
   const fileNames: string[] = fs.readdirSync(booksDirectory)

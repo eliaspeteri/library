@@ -3,7 +3,7 @@ import { ChangeEvent, useState } from "react"
 import { IBook } from "../types"
 
 /**
- * A basic form to add, edit and delete books in the database
+ * A basic form to add, edit and delete books in the database.
  * @param id Book ID, generated from the filename
  * @param author Book author, given by user
  * @param title Book Title, given by user

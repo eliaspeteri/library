@@ -6,7 +6,11 @@
 1. [Specifications](#specifications)
 2. [Stack](#stack)
 3. [Installation](#installation)
+   1. [Required programs](#required-programs)
+   2. [Installing the application](#installing-the-application)
 4. [Executing](#executing)
+   1. [Production](#production)
+   2. [Development](#development)
 5. [Troubleshooting](#troubleshooting)
 6. [Closing words](#closing-words)
 
@@ -38,11 +42,23 @@ As per original specification, the UI is created with React through Next.js, and
 
 ## Installation
 
-TODO
+### Required programs
+
+For this application, the requirement is Node 12 or newer.
+
+### Installing the application
+
+If and when you have Node installed, you may build the frontend with _npm run front:install:build_ which installs the required packages and creates a build version of the application. Likewise, the server is built with _server:install:compile_ which installs the server-side packages.
 
 ## Executing
 
-TODO
+### Production
+
+To run the frontend and backend in production mode, like when deploying to Heroku or other hosting providers, you want to run _start:production_ which starts both sides in production mode. After, you can navigate to domain you deployed the application(s) to see if they've appeared there.
+
+### Development
+
+If you want to develop this application further, or just see what's going on under the hood, you want to run _start:dev_ in order to really see all the magic. This starts concurrently which in respect renders all the logs and errors in a single terminal for ease of interfacing with the information.
 
 ## Troubleshooting
 

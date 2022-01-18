@@ -5,6 +5,11 @@ import Head from "next/head"
 import { GetStaticProps, GetStaticPaths } from "next"
 import { IBook } from "../../types"
 
+/**
+ * Produce and return a Book component specific to the book found with bookData.id
+ * @param bookData Book related data as outlined by IBook in /types
+ * @returns JSX.Element
+ */
 export default function ({ bookData }: { bookData: IBook }): JSX.Element {
   return (
     <Layout>
