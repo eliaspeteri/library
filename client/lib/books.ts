@@ -1,6 +1,7 @@
 import fs from "fs"
 import path from "path"
 import matter, { GrayMatterFile } from "gray-matter"
+/* Types */
 import { IBook } from "../types"
 
 const booksDirectory: string = path.join(process.cwd(), "books")
@@ -30,7 +31,7 @@ export function getAllBooksData(): IBook[] {
         author: string
         description: string
         title: string
-      }),
+      })
     }
   })
   return allBooksData.sort((a, b) => {
@@ -44,8 +45,8 @@ export function getAllBookIds() {
   return fileNames.map((fileName: string) => {
     return {
       params: {
-        id: fileName.replace(/\.md$/, ""),
-      },
+        id: fileName.replace(/\.md$/, "")
+      }
     }
   })
 }
@@ -64,6 +65,6 @@ export function getBookData(id: string): IBook {
       author: string
       description: string
       title: string
-    }),
+    })
   }
 }

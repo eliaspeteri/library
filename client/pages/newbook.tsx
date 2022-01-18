@@ -1,6 +1,8 @@
+/* Next.js components */
 import Head from "next/head"
-import Layout from "../components/Layout"
-import BookForm from "../components/BookForm"
+/* Components */
+import { BookForm, Layout } from "../components"
+/* Semantic UI */
 import { Header } from "semantic-ui-react"
 
 /**

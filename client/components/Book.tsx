@@ -1,7 +1,11 @@
+/* Next.js components */
 import Link from "next/link"
 import { useState } from "react"
+/* Semantic UI */
 import { Button, Container, Divider, Header } from "semantic-ui-react"
-import BookForm from "../components/BookForm"
+/* Components */
+import { BookForm } from "../components"
+
 interface Props {
   author: string
   description?: string
@@ -20,7 +24,7 @@ export default function Book({
   author,
   description,
   id,
-  title,
+  title
 }: Props): JSX.Element {
   const [formState, toggleFormState] = useState(false)
   return (

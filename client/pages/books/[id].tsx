@@ -1,7 +1,10 @@
-import Layout from "../../components/Layout"
-import Book from "../../components/Book"
-import { getAllBookIds, getBookData } from "../../lib/books"
+/* Next.js components */
 import Head from "next/head"
+/* Components */
+import { Book, Layout } from "../../components"
+/* Helpers */
+import { getAllBookIds, getBookData } from "../../lib/books"
+/* Types */
 import { GetStaticProps, GetStaticPaths } from "next"
 import { IBook } from "../../types"
 
@@ -34,18 +37,18 @@ export const getStaticPaths: GetStaticPaths = async (): Promise<{
   const paths = getAllBookIds()
   return {
     paths,
-    fallback: false,
+    fallback: false
   }
 }
 
 export const getStaticProps: GetStaticProps = async ({
-  params,
+  params
 }): Promise<{ props: { bookData: any } }> => {
   // Fetch necessary data for the book using params.id
   const bookData: IBook = getBookData(params.id as string)
   return {
     props: {
-      bookData,
-    },
+      bookData
+    }
   }
 }
