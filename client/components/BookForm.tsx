@@ -1,7 +1,10 @@
+/* Semantic UI */
 import { Button, Container, Divider, Form } from "semantic-ui-react"
 import { ChangeEvent, useState } from "react"
-import { IBook } from "../types"
+/* Hooks */
 import useResource from "../hooks/useResource"
+/* Types */
+import { IBook } from "../types"
 
 /**
  * A basic form to add, edit and delete books in the database.

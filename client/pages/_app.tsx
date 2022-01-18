@@ -1,5 +1,5 @@
-/* Semantic UI styling */
 import { AppProps } from "next/dist/shared/lib/router/router"
+/* Semantic UI styling */
 import "semantic-ui-css/semantic.min.css"
 
 /**

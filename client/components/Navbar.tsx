@@ -1,12 +1,14 @@
 import React from "react"
+/* Next.js components */
 import Link from "next/link"
+/* Semantic UI */
 import { Item, Menu } from "semantic-ui-react"
 
 /**
  * A navbar component to ease navigating around the application.
  * @returns JSX.Element
  */
-export function Navbar(): JSX.Element {
+export default function Navbar(): JSX.Element {
   return (
     <Menu>
       <Item>

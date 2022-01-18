@@ -1,16 +1,14 @@
+/* Services */
 import axios, { AxiosResponse } from "axios"
+/* Next.js components */
 import Head from "next/head"
-import Layout from "../components/Layout"
-import Book from "../components/Book"
-// import { getAllBooksData } from "../lib/books"
-import {
-  Container as Segment,
-  Dimmer,
-  Header,
-  Image,
-  Loader
-} from "semantic-ui-react"
+/* Components */
+import { Book, Layout } from "../components"
+/* Semantic UI */
+import { Segment, Dimmer, Header, Image, Loader } from "semantic-ui-react"
+/* Types */
 import { BookProps } from "../types"
+
 const fetcher = (url: string): Promise<any> =>
   axios.get(url).then((res: AxiosResponse) => res.data)
 
@@ -24,7 +22,7 @@ interface Props {
  * @param allBooksData all books fetched from the database with getStaticProps
  * @returns JSX.Element
  */
-export default function Books({ books, limit = 3 }: Props): JSX.Element {
+export default function Books({ books }: Props): JSX.Element {
   return (
     <Layout>
       <Head>

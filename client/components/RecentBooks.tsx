@@ -1,9 +1,14 @@
+/* Services */
 import axios, { AxiosResponse } from "axios"
 import React from "react"
+/* Semantic UI */
 import { Container, Header, List } from "semantic-ui-react"
-import { BookProps } from "../types"
+/* Next.js components */
 import Link from "next/link"
+/* Components */
 import ErrorBoundary from "./ErrorBoundary"
+/* Types */
+import { BookProps } from "../types"
 
 const fetcher = (url: string): Promise<any> =>
   axios.get(url).then((res: AxiosResponse) => res.data)

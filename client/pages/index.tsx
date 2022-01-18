@@ -1,7 +1,7 @@
 /* Next.js components */
 import Head from "next/head"
-import Layout from "../components/Layout"
-import RecentBooks from "../components/RecentBooks"
+/* Components */
+import { Layout, RecentBooks } from "../components"
 
 /**
  * Homepage-route

@@ -1,4 +1,5 @@
-import { Navbar } from "./Navbar"
+/* Components */
+import Navbar from "./Navbar"
 
 interface Props {
   children: React.ReactNode
