@@ -3,6 +3,7 @@ import path from "path"
 import matter, { GrayMatterFile } from "gray-matter"
 /* Types */
 import { IBook } from "../types"
+import axios, { AxiosResponse } from "axios"
 
 const booksDirectory: string = path.join(process.cwd(), "books")
 
@@ -39,32 +40,30 @@ export function getAllBooksData(): IBook[] {
   })
 }
 
-export function getAllBookIds() {
-  const fileNames = fs.readdirSync(booksDirectory)
-
-  return fileNames.map((fileName: string) => {
+/**
+ *
+ * @returns an array of identifiers
+ */
+export async function getAllBookIds() {
+  const books: AxiosResponse = await axios.get(
+    "http://localhost:8080/api/books"
+  )
+  return books.data.map((book) => {
     return {
       params: {
-        id: fileName.replace(/\.md$/, "")
+        id: book.id
       }
     }
   })
 }
 
-export function getBookData(id: string): IBook {
-  const fullPath: string = path.join(booksDirectory, `${id}.md`)
-  const fileContents: string = fs.readFileSync(fullPath, "utf8")
-
-  // Parse metadata with gray-matter
-  const matterResult: GrayMatterFile<string> = matter(fileContents)
-
-  // Return data with id
+export async function getBookData(id: string) {
+  const book: AxiosResponse = await axios.get(
+    `http://localhost:8080/api/books/${id}`
+  )
   return {
-    id,
-    ...(matterResult.data as {
-      author: string
-      description: string
-      title: string
-    })
+    author: book.data.author,
+    description: book.data.description,
+    title: book.data.title
   }
 }
