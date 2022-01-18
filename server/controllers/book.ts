@@ -12,8 +12,10 @@ import logger from '../utils/logger';
 
 const controller: Router = Router();
 
-controller.get('/', async (_req: Request, res: Response): Promise<void> => {
+controller.get('/', async (req: Request, res: Response): Promise<void> => {
   try {
+    const limit: number = parseInt(req.params.limit);
+    if (limit) res.json(await BookService.getLimited(limit));
     res.json(await BookService.getAll());
   } catch (error) {
     res.status(400).send({ error: 'Unable to fetch all books.' });
