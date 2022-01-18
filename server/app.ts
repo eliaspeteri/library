@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import cors from 'cors';
 import express, { Application } from 'express';
 import mongoose from 'mongoose';
@@ -17,8 +18,11 @@ mongoose
   .then((): void => {
     logger.info('Connected to MongoDB.');
   })
-  .catch((err: any): void => {
-    logger.error("Failed to connect to MongoDB. Here's why: ", err.message);
+  .catch((err): void => {
+    logger.error(
+      "Failed to connect to MongoDB. Here's why: ",
+      (err as any).message
+    );
   });
 
 app.use(express.static('../client/build'));
