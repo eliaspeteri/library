@@ -32,7 +32,7 @@ export default function Book({
       <Link href={`/books/${id}`}>
         <a>
           <Header as="h2" dividing>
-            {title} by {author}
+            <i>{title}</i> by {author}
           </Header>
         </a>
       </Link>
