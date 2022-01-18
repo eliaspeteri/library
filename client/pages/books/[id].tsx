@@ -34,7 +34,7 @@ export const getStaticPaths: GetStaticPaths = async (): Promise<{
   fallback: any
 }> => {
   // Return a list of possible values for id
-  const paths = getAllBookIds()
+  const paths = await getAllBookIds()
   return {
     paths,
     fallback: false
@@ -45,7 +45,7 @@ export const getStaticProps: GetStaticProps = async ({
   params
 }): Promise<{ props: { bookData: any } }> => {
   // Fetch necessary data for the book using params.id
-  const bookData: IBook = getBookData(params.id as string)
+  const bookData: IBook = await getBookData(params.id as string)
   return {
     props: {
       bookData
