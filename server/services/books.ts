@@ -15,6 +15,14 @@ const getLimited = async (limit: number): Promise<Book[]> =>
 const removeOne = async (id: string): Promise<unknown> =>
   await BookModel.findByIdAndRemove(id);
 
+const updateOne = async (
+  id: string,
+  obj: Record<string, unknown>
+): Promise<string> => {
+  await BookModel.findByIdAndUpdate(id, obj);
+  return 'Book updated successfully.';
+};
+
 const saveOne = async (book: Book): Promise<string> => {
   const newBook = new BookModel({
     ...book,
@@ -30,6 +38,7 @@ const BookService = {
   getAll,
   getLimited,
   removeOne,
+  updateOne,
   saveOne
 };
 

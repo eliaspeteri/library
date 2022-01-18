@@ -43,6 +43,19 @@ controller.post('/', async (req: Request, res: Response): Promise<void> => {
   }
 });
 
+controller.put('/:id', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const response: string = await BookService.updateOne(req.params.id, {
+      ...req.body
+    });
+
+    res.json({ message: response });
+  } catch (error) {
+    res.status(400).send({ error: 'Unable to update book.' });
+    logger.error((error as any).message);
+  }
+});
+
 controller.delete(
   '/:id',
   async (req: Request, res: Response): Promise<void> => {
