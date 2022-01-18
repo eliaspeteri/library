@@ -8,11 +8,16 @@
 3. [Installation](#installation)
    1. [Required programs](#required-programs)
    2. [Installing the application](#installing-the-application)
+   3. [Final prerequisites](#final-prerequisites)
 4. [Executing](#executing)
    1. [Production](#production)
    2. [Development](#development)
    3. [Heroku deployment](#heroku-deployment)
 5. [Troubleshooting](#troubleshooting)
+   1. [Neither frontend or backend will run](#neither-frontend-or-backend-will-run)
+   2. [Backend will not run or is outdated](#backend-will-not-run-or-is-outdated)
+   3. [Heroku instance is down](#heroku-instance-is-down)
+   4. [Mongoose can't connect to a database](#mongoose-cant-connect-to-a-database)
 6. [Closing words](#closing-words)
 
 ## Opening words
@@ -39,7 +44,7 @@ The original task was to create a single-page web application (SPA) which manage
 
 ## Stack
 
-As per original specification, the UI is created with React through Next.js, and the author chooses to specifically use this framework in combination with TypeScript. Semantic UI React may be used for styling. Axios will be used to fetch data from the server. Backend will be provided by a combination of MongoDB (through mongoose), Node.js and Express.js. For article 7 of specifications, Concurrently shall be used in order to launch both backend and frontend into a single terminal.
+As per original specification, the UI is created with React through Next.js, and the author chooses to specifically use this framework in combination with TypeScript. Semantic UI is used for additional styling. Axios will be used to fetch data from the server. Backend will be provided by a combination of MongoDB (through mongoose), Node.js and Express.js. For article 7 of specifications, Concurrently shall be used in order to launch both backend and frontend into a single terminal.
 
 ## Installation
 
@@ -55,10 +60,7 @@ If and when you have Node installed, you may build the frontend with _npm run fr
 
 If you wish to run this on your own machine, be prepared to create a free MongoDB Atlas account if you don't already have one. After, you should create a _.env_-file, with a structure something like below, replacing all the details within brackets with your own. Note that the port is where the server will run, though you can change this if you wish to run it on a different port.
 
-```node
-MONGODB_URI=mongodb+srv://<user>:<password>@<cluster address>/library?retryWrites=true&w=majority
-PORT=8080
-```
+`node MONGODB_URI=mongodb+srv://<user>:<password>@<cluster address>/library?retryWrites=true&w=majority PORT=8080`
 
 ## Executing
 
@@ -72,12 +74,26 @@ If you want to develop this application further, or just see what's going on und
 
 ### Heroku deployment
 
-This application _should_ be available at [https://library-ex.herokuapp.com/](https://library-ex.herokuapp.com/), and free to browse around the application.
+This application _should_ be available at [https://library-ex.herokuapp.com/](https://library-ex.herokuapp.com/) at the time of writing, and free to browse by anyone. If not, please refer [here to see how to get your own copy](#installing).
 
 ## Troubleshooting
 
-TODO
+### Neither frontend or backend will run
+
+Run `sh npm run front:install:build` and `sh npm run server:install:compile` in the project root folder one after the other. You can also combine them with an `&&` operator to make them run together!
+
+### Backend will not run or is outdated
+
+You need to compile the TypeScript project files back into CommonJS for Node to be able to read them. You can do this by simply running `sh npm run build`.
+
+### Heroku instance is down
+
+This is most likely some error I have not yet been able to fix. You can always spin up a local edition to try the application out.
+
+### Mongoose can't connect to a database
+
+Remember to add your connection URI to the environment variable file.
 
 ## Closing words
 
-TODO
+All in all, I've spent roughly 18 hours on this over two days, and there is a lot more I would've done. However at this stage the project has reached its specifications, and is ready to be displayed. Enjoy.
