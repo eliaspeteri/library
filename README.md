@@ -51,6 +51,15 @@ For this application, the requirement is Node 12 or newer.
 
 If and when you have Node installed, you may build the frontend with _npm run front:install:build_ which installs the required packages and creates a build version of the application. Likewise, the server is built with _server:install:compile_ which installs the server-side packages.
 
+### Final prerequisites
+
+If you wish to run this on your own machine, be prepared to create a free MongoDB Atlas account if you don't already have one. After, you should create a _.env_-file, with a structure something like below, replacing all the details within brackets with your own. Note that the port is where the server will run, though you can change this if you wish to run it on a different port.
+
+```node
+MONGODB_URI=mongodb+srv://<user>:<password>@<cluster address>/library?retryWrites=true&w=majority
+PORT=8080
+```
+
 ## Executing
 
 ### Production
@@ -63,7 +72,7 @@ If you want to develop this application further, or just see what's going on und
 
 ### Heroku deployment
 
-TODO
+This application _should_ be available at [https://library-ex.herokuapp.com/](https://library-ex.herokuapp.com/), and free to browse around the application.
 
 ## Troubleshooting
 

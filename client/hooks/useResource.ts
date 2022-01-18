@@ -11,7 +11,7 @@ const useResource = (url: string) => {
     return res.data
   }
 
-  const getByID = async (id: number) => {
+  const getByID = async (id: string) => {
     const res: AxiosResponse = await axios.get(`${url}/${id}`)
     return res.data
   }
@@ -21,12 +21,12 @@ const useResource = (url: string) => {
     return res.data
   }
 
-  const update = async (id: number, obj: Record<string, unknown>) => {
+  const update = async (id: string, obj: Record<string, unknown>) => {
     const res: AxiosResponse = await axios.put(`${url}/${id}`, obj)
     return res.data
   }
 
-  const remove = async (id: number) => {
+  const remove = async (id: string) => {
     const res: AxiosResponse = await axios.delete(`${url}/${id}`)
     return res.data
   }

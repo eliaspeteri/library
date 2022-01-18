@@ -17,8 +17,7 @@ const bookSchema: Schema = new Schema<Book>({
   },
   description: {
     type: String,
-    required: false,
-    minlength: 3
+    required: false
   },
   title: {
     type: String,
