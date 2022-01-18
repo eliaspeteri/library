@@ -4,7 +4,7 @@ import { Button, Container, Divider, Header } from "semantic-ui-react"
 import BookForm from "../components/BookForm"
 interface Props {
   author: string
-  description: string
+  description?: string
   id: string
   title: string
 }

@@ -6,7 +6,7 @@ import { Container, Header } from "semantic-ui-react"
 
 interface BookProps {
   author: string
-  description: string
+  description?: string
   title: string
 }
 
