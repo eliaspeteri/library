@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "engines": {
-    "node": "12.19.0"
+    "node": "12.14.1"
   },
   "scripts": {
     "start": "cross-env NODE_ENV=production node dist/index.js",

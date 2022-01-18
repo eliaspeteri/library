@@ -4,15 +4,15 @@
   "description": "This full-stack application depicting a regular library collection has been created as a programming exercise for recruit purposes.",
   "main": "server/dist/index.js",
   "engines": {
-    "node": "12.19.0"
+    "node": "12.14.1"
   },
   "scripts": {
     "start:production": "npm --prefix ./server/ start",
     "start:dev": "concurrently --kill-others -c cyan,magenta -n CLIENT,SERVER \"cd client/ && npm run dev\" \"npm --prefix ./server/ run dev\"",
     "front:install:build": "cd client/ && npm i && npm run build",
     "server:install:compile": "cd server && npm i && npm run compile",
-    "preinstall": "npm run front:install:build",
-    "postinstall": "npm run server:install:compile"
+    "preinstall": "npm run server:install:compile",
+    "postinstall": "npm run front:install:build"
   },
   "repository": {
     "type": "git",
