@@ -11,6 +11,7 @@
 4. [Executing](#executing)
    1. [Production](#production)
    2. [Development](#development)
+   3. [Heroku deployment](#heroku-deployment)
 5. [Troubleshooting](#troubleshooting)
 6. [Closing words](#closing-words)
 
@@ -59,6 +60,10 @@ To run the frontend and backend in production mode, like when deploying to Herok
 ### Development
 
 If you want to develop this application further, or just see what's going on under the hood, you want to run _start:dev_ in order to really see all the magic. This starts concurrently which in respect renders all the logs and errors in a single terminal for ease of interfacing with the information.
+
+### Heroku deployment
+
+TODO
 
 ## Troubleshooting
 
