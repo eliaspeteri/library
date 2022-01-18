@@ -1,8 +1,18 @@
+import axios, { AxiosResponse } from "axios"
 import Head from "next/head"
 import Layout from "../components/Layout"
 import Book from "../components/Book"
-import { getAllBooksData } from "../lib/books"
-import { Container, Header } from "semantic-ui-react"
+// import { getAllBooksData } from "../lib/books"
+import {
+  Container as Segment,
+  Dimmer,
+  Header,
+  Image,
+  Loader,
+} from "semantic-ui-react"
+
+const fetcher = (url: string) =>
+  axios.get(url).then((res: AxiosResponse) => res.data)
 
 interface BookProps {
   author: string
@@ -11,7 +21,7 @@ interface BookProps {
 }
 
 interface Props {
-  allBooksData: [BookProps]
+  books: [BookProps]
 }
 
 /**
@@ -19,48 +29,56 @@ interface Props {
  * @param allBooksData all books fetched from the database with getStaticProps
  * @returns JSX.Element
  */
-export default function Books({ allBooksData }: Props): JSX.Element {
+export default function Books({ books }: Props): JSX.Element {
   return (
     <Layout>
       <Head>
         <title>Books</title>
       </Head>
+      <Segment>
+        {books.length < 1 ? (
+          <Dimmer active>
+            <Loader>Loading</Loader>
+            <Image src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png" />
+          </Dimmer>
+        ) : null}
 
-      <Container>
         <Header as="h1">Books</Header>
-        {allBooksData.map(
-          ({
-            author,
-            description,
-            id,
-            title,
-          }: {
-            author: string
-            description: string
-            id: string
-            title: string
-          }): JSX.Element => (
-            <Book
-              author={author}
-              description={description}
-              id={id}
-              title={title}
-              key={id}
-            />
-          )
-        )}
-      </Container>
+        {books
+          .sort((a, b) => (a.title > b.title ? 1 : -1))
+          .map(
+            ({
+              author,
+              description,
+              id,
+              title,
+            }: {
+              author: string
+              description: string
+              id: string
+              title: string
+            }): JSX.Element => (
+              <Book
+                author={author}
+                description={description}
+                id={id}
+                title={title}
+                key={id}
+              />
+            )
+          )}
+      </Segment>
     </Layout>
   )
 }
 
 export async function getStaticProps(): Promise<{
-  props: { allBooksData: BookProps[] }
+  props: { books: BookProps[] }
 }> {
-  const allBooksData: BookProps[] = getAllBooksData()
+  const books: BookProps[] = await fetcher("http://localhost:8080/api/books")
   return {
     props: {
-      allBooksData,
+      books,
     },
   }
 }

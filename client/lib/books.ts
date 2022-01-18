@@ -50,12 +50,6 @@ export function getAllBookIds() {
   })
 }
 
-export function setBookData(id: string, object: IBook) {
-  const fullPath: string = path.join(booksDirectory, `${id}.md`)
-  const fileContents: string = `---\ntitle: "${object.title}"\nauthor: "${object.author}"\ndescription: "${object.description}"\n---\n`
-  fs.writeFileSync(fullPath, fileContents, "utf8")
-}
-
 export function getBookData(id: string): IBook {
   const fullPath: string = path.join(booksDirectory, `${id}.md`)
   const fileContents: string = fs.readFileSync(fullPath, "utf8")
