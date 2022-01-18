@@ -1,6 +1,7 @@
 import { Button, Container, Divider, Form } from "semantic-ui-react"
 import { ChangeEvent, useState } from "react"
 import { IBook } from "../types"
+import useResource from "../hooks/useResource"
 
 /**
  * A basic form to add, edit and delete books in the database.
@@ -20,23 +21,20 @@ export default function BookForm({
   const [newAuthor, setAuthor] = useState(author)
   const [newDescription, setDescription] = useState(description)
 
-  const handleSubmit = (): void => {
+  const bookService = useResource("http//localhost:8080/api/books")
+
+  const handleSubmit = async (): Promise<void> => {
     let recentBooks: [Omit<IBook, "id">] =
       JSON.parse(localStorage.getItem("recentBooks")) || []
-    window.localStorage.setItem(
-      "newBook",
-      JSON.stringify({
-        author: newAuthor,
-        description: newDescription,
-        title: newTitle,
-      })
-    )
-    recentBooks.push({
+    const newBook = {
       author: newAuthor,
       description: newDescription,
       title: newTitle,
-    })
+    }
+    window.localStorage.setItem("newBook", JSON.stringify(newBook))
+    recentBooks.push(newBook)
     window.localStorage.setItem("recentBooks", JSON.stringify(recentBooks))
+    await bookService.create(newBook)
   }
 
   return (
