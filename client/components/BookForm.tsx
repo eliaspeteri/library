@@ -36,7 +36,7 @@ export default function BookForm({
       description: newDescription,
       title: newTitle,
     })
-    localStorage.setItem("recentBooks", JSON.stringify(recentBooks))
+    window.localStorage.setItem("recentBooks", JSON.stringify(recentBooks))
   }
 
   return (
