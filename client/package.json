@@ -7,6 +7,12 @@
     "build": "next build",
     "start": "next start"
   },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
   "dependencies": {
     "axios": "^0.24.0",
     "eslint": "^8.7.0",
