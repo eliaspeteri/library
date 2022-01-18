@@ -1,35 +1,32 @@
 import axios, { AxiosResponse } from "axios"
-import React, { useEffect, useState } from "react"
-import { Header, List, Segment } from "semantic-ui-react"
-import { IBook } from "../types"
+import React from "react"
+import { Container, Header, List } from "semantic-ui-react"
+import { BookProps } from "../types"
 import Link from "next/link"
 import ErrorBoundary from "./ErrorBoundary"
 
-const fetcher = (url: string) =>
+const fetcher = (url: string): Promise<any> =>
   axios.get(url).then((res: AxiosResponse) => res.data)
-
-interface BookProps {
-  id: string
-  author: string
-  description?: string
-  title: string
-}
-
 interface Props {
   recentBooks?: [BookProps]
 }
 
-function renderBookList(books): JSX.Element {
+/**
+ *
+ * @param books Books found in the database to render in a list.
+ * @returns JSX.Element
+ */
+function renderBookList(books: BookProps[]): JSX.Element {
   return (
     <>
       {books
-        .sort((a, b) => (a.title > b.title ? 1 : -1))
+        .sort((a: BookProps, b: BookProps) => (a.title > b.title ? 1 : -1))
         .map(
-          (book: IBook): JSX.Element => (
-            <List.Item key={book.id}>
-              <Link href={`/books/${book.id}`}>
+          ({ author, id, title }: BookProps): JSX.Element => (
+            <List.Item key={id}>
+              <Link href={`/books/${id}`}>
                 <a>
-                  <i>{book.title}</i> by <b>{book.author}</b>
+                  <i>{title}</i> by <b>{author}</b>
                 </a>
               </Link>
             </List.Item>
@@ -41,25 +38,23 @@ function renderBookList(books): JSX.Element {
 
 /**
  * Displays books recently added into the database.
+ * @param recentBooks An array of books recently added to the database.
  * @returns JSX.Element
  */
 export default function RecentBooks({ recentBooks }: Props): JSX.Element {
-  const [recentBooksFallback, setRecentBooks] = useState([])
-  useEffect((): void => {
-    setRecentBooks(JSON.parse(window.localStorage.getItem("recentBooks")) || [])
-  })
   return (
     <>
       <Header as="h2">Recent Books added by readers like you</Header>
       <ErrorBoundary>
         <List size={"huge"}>
-          {!recentBooks ? (
-            <Segment>
-              There doesn't seem to be anything new here. Showing local results.
-              {renderBookList(recentBooksFallback)}
-            </Segment>
-          ) : (
+          {recentBooks ? (
             renderBookList(recentBooks)
+          ) : (
+            <Container>
+              There doesn't seem to be anything new here. Maybe go check out if
+              there's any new books to read? You can also add your own for
+              others to find if you don't find what you like.
+            </Container>
           )}
         </List>
       </ErrorBoundary>
@@ -76,7 +71,7 @@ export async function getStaticProps(): Promise<{
 
   return {
     props: {
-      recentBooks,
-    },
+      recentBooks
+    }
   }
 }
