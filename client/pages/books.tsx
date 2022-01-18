@@ -8,20 +8,15 @@ import {
   Dimmer,
   Header,
   Image,
-  Loader,
+  Loader
 } from "semantic-ui-react"
-
-const fetcher = (url: string) =>
+import { BookProps } from "../types"
+const fetcher = (url: string): Promise<any> =>
   axios.get(url).then((res: AxiosResponse) => res.data)
-
-interface BookProps {
-  author: string
-  description?: string
-  title: string
-}
 
 interface Props {
   books: [BookProps]
+  limit?: number
 }
 
 /**
@@ -29,7 +24,7 @@ interface Props {
  * @param allBooksData all books fetched from the database with getStaticProps
  * @returns JSX.Element
  */
-export default function Books({ books }: Props): JSX.Element {
+export default function Books({ books, limit = 3 }: Props): JSX.Element {
   return (
     <Layout>
       <Head>
@@ -45,19 +40,9 @@ export default function Books({ books }: Props): JSX.Element {
 
         <Header as="h1">Books</Header>
         {books
-          .sort((a, b) => (a.title > b.title ? 1 : -1))
+          .sort((a: BookProps, b: BookProps) => (a.title > b.title ? 1 : -1))
           .map(
-            ({
-              author,
-              description,
-              id,
-              title,
-            }: {
-              author: string
-              description: string
-              id: string
-              title: string
-            }): JSX.Element => (
+            ({ author, description, id, title }: BookProps): JSX.Element => (
               <Book
                 author={author}
                 description={description}
@@ -75,10 +60,10 @@ export default function Books({ books }: Props): JSX.Element {
 export async function getStaticProps(): Promise<{
   props: { books: BookProps[] }
 }> {
-  const books: BookProps[] = await fetcher("http://localhost:8080/api/books")
+  const books: BookProps[] = await fetcher(`http://localhost:8080/api/books`)
   return {
     props: {
-      books,
-    },
+      books
+    }
   }
 }
