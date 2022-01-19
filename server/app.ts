@@ -18,13 +18,14 @@ mongoose
   .then((): void => {
     logger.info('Connected to MongoDB.');
   })
-  .catch((err): void => {
+  .catch((err: any): void => {
     logger.error(
       "Failed to connect to MongoDB. Here's why: ",
       (err as any).message
     );
   });
 
+// Serve static files from frontend
 app.use(express.static('../client/build'));
 
 app.use(cors());

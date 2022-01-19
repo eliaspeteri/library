@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import app from './app';
 
 import { createServer, Server } from 'http';
@@ -9,7 +10,7 @@ const server: Server = createServer(app);
 
 try {
   server.listen(Config.PORT, (): void => {
-    logger.info(`Connected successfully on port ${Config.PORT}`);
+    logger.info(`Connected successfully, url: http://localhost:${Config.PORT}`);
   });
 } catch (error) {
   logger.error(`Error occurred ${(error as any).message}`);
