@@ -83,6 +83,10 @@ This application _should_ be available at [https://library-ex.herokuapp.com/](ht
 
 ## Troubleshooting
 
+## Frontend refuses to build
+
+You need to compile the server first from TS to JS and run it while building the frontend to collect API data for static pages. Refer [here](#installing-the-application) for additional information.
+
 ### Neither frontend or backend will run
 
 Run `npm run front:install:build` and `npm run server:install:compile` in the project root folder one after the other. You can also combine them with an `&&` operator to make them run together!
