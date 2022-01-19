@@ -50,11 +50,16 @@ As per original specification, the UI is created with React through Next.js, and
 
 ### Required programs
 
-For this application, the requirement is Node 12 or newer.
+For this application, the requirement is Node 12 or newer. There are many guides online for installing Node. I personally recommend [this one from Microsoft](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows).
 
 ### Installing the application
 
-If and when you have Node installed, you may build the frontend with _npm run front:install:build_ which installs the required packages and creates a build version of the application. Likewise, the server is built with _server:install:compile_ which installs the server-side packages.
+After installing Node (hopefully successfully), the order of installation goes as such:
+
+1. Compiling the server. This is done in the root folder with `sh npm run server:install:compile`, which installs the dependencies for the server and compiles TypeScript code back into regular JS.
+2. Temporarily starting the server in order to build the frontend. This is done by running `sh npm --prefix ./server/ start`. Keep this running for now.
+3. Open another terminal in the project root folder, and run `sh npm run front:install:build` to compile the frontend. The reason we want the backend running is for Next.js to create static pages from the data the API returns in case the backend goes down.
+4. After the frontend has completed building, you may shutdown the server.
 
 ### Final prerequisites
 

@@ -7,8 +7,8 @@
     "node": "12.14.1"
   },
   "scripts": {
-    "start:production": "npm --prefix ./server/ start",
-    "start:dev": "concurrently --kill-others -c cyan,magenta -n CLIENT,SERVER \"cd client/ && npm run dev\" \"npm --prefix ./server/ run dev\"",
+    "start:production": "concurrently --kill-others -c cyan,magenta -n SERVER,CLIENT \"npm --prefix ./server/ start\" \"npm --prefix ./client/ start\"",
+    "start:dev": "concurrently --kill-others -c cyan,magenta -n SERVER,CLIENT \"npm --prefix ./server/ run dev\" \"npm --prefix ./client/ run dev\"",
     "front:install:build": "npm run build --prefix ./client/",
     "server:install:compile": "npm run compile --prefix ./server/",
     "preinstall": "npm run server:install:compile",
