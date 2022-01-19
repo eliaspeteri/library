@@ -74,7 +74,7 @@ If you want to develop this application further, or just see what's going on und
 
 ### Heroku deployment
 
-This application _should_ be available at [https://library-ex.herokuapp.com/](https://library-ex.herokuapp.com/) at the time of writing, and free to browse by anyone. If not, please refer [here to see how to get your own copy](#installing).
+This application _should_ be available at [https://library-ex.herokuapp.com/](https://library-ex.herokuapp.com/) at the time of writing, and free to browse by anyone. If not, please refer [here to see how to get your own copy](#installation).
 
 ## Troubleshooting
 
