@@ -56,16 +56,16 @@ For this application, the requirement is Node 12 or newer. There are many guides
 
 After installing Node (hopefully successfully), the order of installation goes as such:
 
-1. Compiling the server. This is done in the root folder with `sh npm run server:install:compile`, which installs the dependencies for the server and compiles TypeScript code back into regular JS.
-2. Temporarily starting the server in order to build the frontend. This is done by running `sh npm --prefix ./server/ start`. Keep this running for now.
-3. Open another terminal in the project root folder, and run `sh npm run front:install:build` to compile the frontend. The reason we want the backend running is for Next.js to create static pages from the data the API returns in case the backend goes down.
+1. Compiling the server. This is done in the root folder with `npm run server:install:compile`, which installs the dependencies for the server and compiles TypeScript code back into regular JS.
+2. Temporarily starting the server in order to build the frontend. This is done by running `npm --prefix ./server/ start`. Keep this running for now.
+3. Open another terminal in the project root folder, and run `npm run front:install:build` to compile the frontend. The reason we want the backend running is for Next.js to create static pages from the data the API returns in case the backend goes down.
 4. After the frontend has completed building, you may shutdown the server.
 
 ### Final prerequisites
 
 If you wish to run this on your own machine, be prepared to create a free MongoDB Atlas account if you don't already have one. After, you should create a _.env_-file, with a structure something like below, replacing all the details within brackets with your own. Note that the port is where the server will run, though you can change this if you wish to run it on a different port.
 
-`node MONGODB_URI=mongodb+srv://<user>:<password>@<cluster address>/library?retryWrites=true&w=majority PORT=8080`
+`MONGODB_URI=mongodb+srv://<user>:<password>@<cluster address>/library?retryWrites=true&w=majority PORT=8080`
 
 ## Executing
 
@@ -85,11 +85,11 @@ This application _should_ be available at [https://library-ex.herokuapp.com/](ht
 
 ### Neither frontend or backend will run
 
-Run `sh npm run front:install:build` and `sh npm run server:install:compile` in the project root folder one after the other. You can also combine them with an `&&` operator to make them run together!
+Run `npm run front:install:build` and `npm run server:install:compile` in the project root folder one after the other. You can also combine them with an `&&` operator to make them run together!
 
 ### Backend will not run or is outdated
 
-You need to compile the TypeScript project files back into CommonJS for Node to be able to read them. You can do this by simply running `sh npm run build`.
+You need to compile the TypeScript project files back into CommonJS for Node to be able to read them. You can do this by simply running `npm run build`.
 
 ### Heroku instance is down
 
