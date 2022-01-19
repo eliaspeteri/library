@@ -96,4 +96,4 @@ Remember to add your connection URI to the environment variable file.
 
 ## Closing words
 
-All in all, I've spent roughly 18 hours on this over two days, and there is a lot more I would've done. However at this stage the project has reached its specifications, and is ready to be displayed. Enjoy.
+All in all, I've spent roughly 20 hours on this over three days, and there is a lot more I would've done such as full deployment to Heroku and unit tests. However at this stage the project has reached its specifications, and is ready to be displayed. Enjoy.
