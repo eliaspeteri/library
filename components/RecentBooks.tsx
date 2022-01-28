@@ -71,7 +71,7 @@ export async function getStaticProps(): Promise<{
   props: { recentBooks: BookProps[] }
 }> {
   const recentBooks: BookProps[] = await fetcher(
-    "http://localhost:8080/api/books?limit=10"
+    "https://eliaspeteri-library-back.herokuapp.com/api/books?limit=10"
   )
 
   return {

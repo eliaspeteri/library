@@ -6,7 +6,7 @@ import axios, { AxiosResponse } from "axios"
  */
 export async function getAllBookIds() {
   const books: AxiosResponse = await axios.get(
-    "http://localhost:8080/api/books"
+    "https://eliaspeteri-library-back.herokuapp.com/api/books"
   )
   return books.data.map((book) => {
     return {
@@ -19,7 +19,7 @@ export async function getAllBookIds() {
 
 export async function getBookData(id: string) {
   const book: AxiosResponse = await axios.get(
-    `http://localhost:8080/api/books/${id}`
+    `https://eliaspeteri-library-back.herokuapp.com/api/books/${id}`
   )
   return {
     author: book.data.author,
