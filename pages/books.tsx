@@ -58,7 +58,9 @@ export default function Books({ books }: Props): JSX.Element {
 export async function getStaticProps(): Promise<{
   props: { books: BookProps[] }
 }> {
-  const books: BookProps[] = await fetcher(`http://localhost:8080/api/books`)
+  const books: BookProps[] = await fetcher(
+    `https://eliaspeteri-library-back.herokuapp.com/api/books`
+  )
   return {
     props: {
       books

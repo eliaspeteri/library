@@ -24,7 +24,9 @@ export default function BookForm({
   const [newAuthor, setAuthor] = useState(author)
   const [newDescription, setDescription] = useState(description)
 
-  const bookService = useResource("http://localhost:8080/api/books")
+  const bookService = useResource(
+    "https://eliaspeteri-library-back.herokuapp.com/api/books"
+  )
 
   const handleSubmit = async (): Promise<void> => {
     event?.preventDefault()

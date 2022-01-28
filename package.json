@@ -1,49 +1,32 @@
 {
-  "name": "library",
+  "name": "client",
   "version": "1.0.0",
-  "description": "This full-stack application depicting a regular library collection has been created as a programming exercise for recruit purposes.",
-  "main": "server/dist/index.js",
-  "engines": {
-    "node": "12.14.1"
-  },
+  "private": true,
   "scripts": {
-    "start:production": "concurrently --kill-others -c cyan,magenta -n SERVER,CLIENT \"npm --prefix ./server/ start\" \"npm --prefix ./client/ start\"",
-    "start:dev": "concurrently --kill-others -c cyan,magenta -n SERVER,CLIENT \"npm --prefix ./server/ run dev\" \"npm --prefix ./client/ run dev\"",
-    "front:install:build": "npm run build --prefix ./client/",
-    "server:install:compile": "npm run compile --prefix ./server/",
-    "preinstall": "npm run server:install:compile",
-    "postinstall": "npm run front:install:build"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/eliaspeteri/library.git"
-  },
-  "keywords": [
-    "axios",
-    "mongoose",
-    "mongodb",
-    "node",
-    "express",
-    "react",
-    "next",
-    "nextjs",
-    "typescript"
-  ],
-  "author": "Elias Peteri",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/eliaspeteri/library/issues"
-  },
-  "homepage": "https://github.com/eliaspeteri/library#readme",
   "dependencies": {
-    "typescript": "^4.5.4"
+    "axios": "^0.24.0",
+    "eslint": "^8.7.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "mongoose": "^6.1.7",
+    "next": "latest",
+    "prettier": "^2.5.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^2.0.4"
   },
   "devDependencies": {
-    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.9",
     "@types/react": "^17.0.38",
-    "concurrently": "^7.0.0"
+    "@typescript-eslint/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^5.10.0",
+    "typescript": "^4.5.4"
   },
-  "cacheDirectories": [
-    ".next/cache"
-  ]
+  "proxy": "https://eliaspeteri-library-back.herokuapp.com"
 }
