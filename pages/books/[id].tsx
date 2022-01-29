@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* Next.js components */
 import Head from "next/head"
 /* Components */
@@ -9,12 +10,13 @@ import { GetStaticProps, GetStaticPaths } from "next"
 import { IBook } from "../../types"
 /* React */
 import React from "react"
+
 /**
  * Produce and return a Book component specific to the book found with bookData.id
  * @param bookData Book related data as outlined by IBook in /types
  * @returns JSX.Element
  */
-export default function ({ bookData }: { bookData: IBook }): JSX.Element {
+export default function Id({ bookData }: { bookData: IBook }): JSX.Element {
   return (
     <Layout>
       <Head>
@@ -35,7 +37,7 @@ export const getStaticPaths: GetStaticPaths = async (): Promise<{
   fallback: any
 }> => {
   // Return a list of possible values for id
-  const paths = await getAllBookIds()
+  const paths: any = await getAllBookIds()
   return {
     paths,
     fallback: false

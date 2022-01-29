@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react"
 
 interface State {
@@ -6,12 +7,14 @@ interface State {
 }
 
 class ErrorBoundary extends React.Component<Record<string, unknown>, State> {
-  constructor(props) {
+  constructor(
+    props: Record<string, unknown> | Readonly<Record<string, unknown>>
+  ) {
     super(props)
     this.state = { hasError: false }
   }
 
-  static getDerivedStateFromError(_error: any): State {
+  static getDerivedStateFromError(): State {
     //   Update state so the next render will show the fallback UI.
     return { hasError: true }
   }
@@ -26,8 +29,8 @@ class ErrorBoundary extends React.Component<Record<string, unknown>, State> {
     if (this.state.hasError) {
       return (
         <>
-          Oops! Something went <i>very</i> wrong here. We're working hard to fix
-          that. Sorry for the inconvenience!
+          Oops! Something went <i>very</i> wrong here. We&apos;re working hard
+          to fix that. Sorry for the inconvenience!
         </>
       )
     }

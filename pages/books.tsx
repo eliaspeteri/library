@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* Services */
 import axios, { AxiosResponse } from "axios"
 /* Next.js components */
@@ -12,7 +13,8 @@ import { BookProps } from "../types"
 import React from "react"
 
 const fetcher = (url: string): Promise<any> =>
-  axios.get(url).then((res: AxiosResponse) => res.data)
+  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+  axios.get(url).then((res: AxiosResponse): any => res.data)
 
 interface Props {
   books: [BookProps]
@@ -40,7 +42,9 @@ export default function Books({ books }: Props): JSX.Element {
 
         <Header as="h1">Books</Header>
         {books
-          .sort((a: BookProps, b: BookProps) => (a.title > b.title ? 1 : -1))
+          .sort((a: BookProps, b: BookProps): 1 | -1 =>
+            a.title > b.title ? 1 : -1
+          )
           .map(
             ({ author, description, id, title }: BookProps): JSX.Element => (
               <Book
