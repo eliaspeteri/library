@@ -1,4 +1,4 @@
 module.exports = {
-  assetPrefix: "/library/",
+  assetPrefix: process.env.NODE_ENV === "production" ? "/library/" : "",
   basePath: "/library"
 }
