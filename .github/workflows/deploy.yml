@@ -38,7 +38,7 @@ jobs:
       - name: Build
         run: |
           npm i --legacy-peer-deps
-          npm run Build
+          npm run build
           npm run export
 
       - name: Deploy
