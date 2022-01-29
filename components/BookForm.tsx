@@ -5,6 +5,8 @@ import { ChangeEvent, useState } from "react"
 import useResource from "../hooks/useResource"
 /* Types */
 import { IBook } from "../types"
+/* React */
+import React from "react"
 
 /**
  * A basic form to add, edit and delete books in the database.
@@ -30,7 +32,7 @@ export default function BookForm({
 
   const handleSubmit = async (): Promise<void> => {
     event?.preventDefault()
-    let recentBooks: [Omit<IBook, "id">] =
+    const recentBooks: [Omit<IBook, "id">] =
       JSON.parse(localStorage.getItem("recentBooks")) || []
     const newBook = {
       author: newAuthor,

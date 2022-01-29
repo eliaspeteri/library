@@ -13,6 +13,7 @@
   },
   "extends": [
     "eslint:recommended",
+    "plugin:@next/next/recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended",
@@ -21,7 +22,7 @@
   "ignorePatterns": ["build/*"],
   "parser": "@typescript-eslint/parser",
   "root": true,
-  "plugins": ["react", "@typescript-eslint", "prettier", "cypress"],
+  "plugins": ["react", "@typescript-eslint", "prettier", "import"],
   "parserOptions": {
     "ecmaVersion": 11,
     "ecmaFeatures": {

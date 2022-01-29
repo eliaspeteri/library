@@ -2,6 +2,8 @@
 import Head from "next/head"
 /* Components */
 import { Layout, RecentBooks } from "../components"
+/* React */
+import React from "react"
 
 /**
  * Homepage-route

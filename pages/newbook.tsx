@@ -4,6 +4,8 @@ import Head from "next/head"
 import { BookForm, Layout } from "../components"
 /* Semantic UI */
 import { Header } from "semantic-ui-react"
+/* React */
+import React from "react"
 
 /**
  * /newbook-route. Wraps the BookForm-component for adding, editing and removing entries in the database
