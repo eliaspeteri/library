@@ -1,21 +1,22 @@
+/* eslint-disable no-console */
 import React from "react"
 
 interface State {
   hasError: boolean
 }
 
-class ErrorBoundary extends React.Component<{}, State> {
+class ErrorBoundary extends React.Component<Record<string, unknown>, State> {
   constructor(props) {
     super(props)
     this.state = { hasError: false }
   }
 
-  static getDerivedStateFromError(error): State {
+  static getDerivedStateFromError(_error: any): State {
     //   Update state so the next render will show the fallback UI.
     return { hasError: true }
   }
 
-  static componentDidCatch(error, errorInfo: React.ErrorInfo): void {
+  static componentDidCatch(error: any, errorInfo: React.ErrorInfo): void {
     console.log(`error: ${error}.`)
     console.log(`errorInfo: ${JSON.stringify(errorInfo)}.`)
     console.log(`componentStack: ${errorInfo.componentStack}.`)

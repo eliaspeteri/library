@@ -1,5 +1,7 @@
 /* Components */
 import Navbar from "./Navbar"
+/* React */
+import React from "react"
 
 interface Props {
   children: React.ReactNode

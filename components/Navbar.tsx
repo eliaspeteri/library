@@ -1,8 +1,9 @@
-import React from "react"
 /* Next.js components */
 import Link from "next/link"
 /* Semantic UI */
 import { Icon, Item, Menu } from "semantic-ui-react"
+/* React */
+import React from "react"
 
 /**
  * A navbar component to ease navigating around the application.

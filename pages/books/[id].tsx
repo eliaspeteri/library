@@ -7,7 +7,8 @@ import { getAllBookIds, getBookData } from "../../lib/books"
 /* Types */
 import { GetStaticProps, GetStaticPaths } from "next"
 import { IBook } from "../../types"
-
+/* React */
+import React from "react"
 /**
  * Produce and return a Book component specific to the book found with bookData.id
  * @param bookData Book related data as outlined by IBook in /types

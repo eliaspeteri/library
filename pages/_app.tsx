@@ -1,6 +1,8 @@
 import { AppProps } from "next/dist/shared/lib/router/router"
 /* Semantic UI styling */
 import "semantic-ui-css/semantic.min.css"
+/* React */
+import React from "react"
 
 /**
  * App component to render subsequent components, and to handle sitewide styling.

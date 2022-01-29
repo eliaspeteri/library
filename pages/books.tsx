@@ -8,6 +8,8 @@ import { Book, Layout } from "../components"
 import { Segment, Dimmer, Header, Image, Loader } from "semantic-ui-react"
 /* Types */
 import { BookProps } from "../types"
+/* React */
+import React from "react"
 
 const fetcher = (url: string): Promise<any> =>
   axios.get(url).then((res: AxiosResponse) => res.data)

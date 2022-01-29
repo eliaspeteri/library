@@ -22,7 +22,7 @@
   "ignorePatterns": ["build/*"],
   "parser": "@typescript-eslint/parser",
   "root": true,
-  "plugins": ["react", "@typescript-eslint", "prettier"],
+  "plugins": ["react", "@typescript-eslint", "prettier", "import"],
   "parserOptions": {
     "ecmaVersion": 11,
     "ecmaFeatures": {
