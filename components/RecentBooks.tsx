@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* Services */
 import axios, { AxiosResponse } from "axios"
 /* Semantic UI */
@@ -57,9 +58,9 @@ export default function RecentBooks({ recentBooks }: Props): JSX.Element {
             renderBookList(recentBooks)
           ) : (
             <Container>
-              There doesn't seem to be anything new here. Maybe go check out if
-              there's any new books to read? You can also add your own for
-              others to find if you don't find what you like.
+              There doesn&apos;t seem to be anything new here. Maybe go check
+              out if there&apos;s any new books to read? You can also add your
+              own for others to find if you don&apos;t find what you like.
             </Container>
           )}
         </List>
