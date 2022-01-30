@@ -35,7 +35,9 @@ function renderBookList(books, error: any): JSX.Element {
       ) : (
         <List size={"huge"} divided relaxed>
           {books
-            .sort((a: BookProps, b: BookProps) => (a.title > b.title ? 1 : -1))
+            .sort((a: BookProps, b: BookProps): 1 | -1 =>
+              a.title > b.title ? 1 : -1
+            )
             .map(
               ({ author, id, title }: BookProps): JSX.Element => (
                 <List.Item key={id}>
