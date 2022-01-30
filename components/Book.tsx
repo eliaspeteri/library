@@ -9,10 +9,10 @@ import { BookForm } from "../components"
 import React from "react"
 
 interface Props {
-  author: string | unknown
-  description?: string | unknown
-  id: string | unknown
-  title: string | unknown
+  author: string
+  description?: string
+  id: string
+  title: string
 }
 /**
  * A component to render the details of a single book.
@@ -28,7 +28,7 @@ export default function Book({
   id,
   title
 }: Props): JSX.Element {
-  const [formState, toggleFormState] = useState(false)
+  const [formToggle, setFormToggle] = useState(false)
   return (
     <Container text fluid>
       <Link href={`/books/${id}`}>
@@ -42,12 +42,12 @@ export default function Book({
       <br />
       <Button
         onClick={(): void =>
-          formState ? toggleFormState(false) : toggleFormState(true)
+          formToggle ? setFormToggle(false) : setFormToggle(true)
         }
       >
         Edit
       </Button>
-      {formState ? (
+      {formToggle ? (
         <BookForm
           id={id}
           author={author}
