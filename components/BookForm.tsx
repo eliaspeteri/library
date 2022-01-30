@@ -33,16 +33,6 @@ export default function BookForm({
   const toastUpdate: (newMsg: string) => void = useToastUpdate()
   const handleSubmit = async (): Promise<void> => {
     event?.preventDefault()
-    const recentBooks: [Omit<IBook, "id">] =
-      JSON.parse(localStorage.getItem("recentBooks")) || []
-    const newBook = {
-      author: newAuthor,
-      description: newDescription,
-      title: newTitle
-    }
-    window.localStorage.setItem("newBook", JSON.stringify(newBook))
-    recentBooks.push(newBook)
-    window.localStorage.setItem("recentBooks", JSON.stringify(recentBooks))
     try {
       await bookService.create({
         author: newAuthor,
