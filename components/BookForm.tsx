@@ -1,9 +1,9 @@
+/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* Semantic UI */
 import { Button, Container, Divider, Form } from "semantic-ui-react"
 /* Hooks */
 import useResource from "../hooks/useResource"
-import { useToastUpdate } from "../contexts/ToastContext"
 /* Types */
 import { IBook } from "../types"
 /* React */
@@ -30,7 +30,6 @@ export default function BookForm({
     "https://eliaspeteri-library-back.herokuapp.com/api/books"
   )
 
-  const toastUpdate: (newMsg: string) => void = useToastUpdate()
   const handleSubmit = async (): Promise<void> => {
     event?.preventDefault()
     try {
@@ -39,18 +38,16 @@ export default function BookForm({
         description: newDescription,
         title: newTitle
       })
-      toastUpdate("Success adding a new book!")
     } catch (error) {
-      toastUpdate(`Error adding a new book: ${(error as any).message}`)
+      console.log((error as any).message)
     }
   }
 
   const handleDelete = async (): Promise<void> => {
     try {
       await bookService.remove(id)
-      toastUpdate("Success removing a book!")
     } catch (error) {
-      toastUpdate(`Error removing the book: ${(error as any).message}`)
+      console.log((error as any).message)
     }
   }
 
@@ -61,9 +58,8 @@ export default function BookForm({
         description: newDescription,
         title: newTitle
       })
-      toastUpdate("Success updating a book!")
     } catch (error) {
-      toastUpdate(`Error updating the book: ${(error as any).message}`)
+      console.log((error as any).message)
     }
   }
 
