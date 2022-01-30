@@ -1,8 +1,9 @@
-import React, { Context, createContext, useContext, useState } from "react"
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { createContext, useContext, useState } from "react"
 
 /** Default values */
 // Toast message
-const ToastContext: Context<string> = React.createContext("")
+const ToastContext = React.createContext("")
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const ToggleToastContext = createContext((newToastMsg: string) => {})
 
@@ -15,7 +16,7 @@ interface Props {
   children: React.ReactNode
 }
 
-const ToastProvider = ({ children }: Props): JSX.Element => {
+const ToastProvider: React.FC<Props> = ({ children }: Props): JSX.Element => {
   const [msg, setMsg] = useState<string>("")
 
   const toggleToast = (newMsg: string): void => setMsg(newMsg)

@@ -15,7 +15,7 @@ const Toast = (): JSX.Element => {
     /** Set message immediately to empty, so next prop changes trigger toast,
      even if toast message is same as previous */
     setTimeout((): void => {
-      toastUpdate("test-message")
+      toastUpdate("")
     }, 5 * 1000)
   })
 
@@ -33,7 +33,6 @@ const Toast = (): JSX.Element => {
       pauseOnHover
       position={"bottom-center"}
       rtl={false}
-      theme={"light"}
     />
   )
 }
