@@ -26,24 +26,29 @@ interface Props {
  * @param books Books found in the database to render in a list.
  * @returns JSX.Element
  */
-function renderBookList(books: BookProps[]): JSX.Element {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function renderBookList(books, error: any): JSX.Element {
   return (
     <Segment>
-      <List size={"huge"} divided relaxed>
-        {books
-          .sort((a: BookProps, b: BookProps) => (a.title > b.title ? 1 : -1))
-          .map(
-            ({ author, id, title }: BookProps): JSX.Element => (
-              <List.Item key={id}>
-                <Link href={`/books/${id}`}>
-                  <a>
-                    <i>{title}</i> by <b>{author}</b>
-                  </a>
-                </Link>
-              </List.Item>
-            )
-          )}
-      </List>
+      {error ? (
+        <Segment>Error loading recently added books.</Segment>
+      ) : (
+        <List size={"huge"} divided relaxed>
+          {books
+            .sort((a: BookProps, b: BookProps) => (a.title > b.title ? 1 : -1))
+            .map(
+              ({ author, id, title }: BookProps): JSX.Element => (
+                <List.Item key={id}>
+                  <Link href={`/books/${id}`}>
+                    <a>
+                      <i>{title}</i> by <b>{author}</b>
+                    </a>
+                  </Link>
+                </List.Item>
+              )
+            )}
+        </List>
+      )}
     </Segment>
   )
 }
@@ -63,7 +68,7 @@ export default function RecentBooks({ limit }: Props): JSX.Element {
       <Header as="h2">Recent Books added by readers like you</Header>
       <ErrorBoundary>
         {data ? (
-          renderBookList(data)
+          renderBookList(data, error)
         ) : (
           <Container>
             There doesn&apos;t seem to be anything new here. Maybe go check out
