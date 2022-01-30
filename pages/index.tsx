@@ -16,7 +16,7 @@ export default function Home(): JSX.Element {
         <title>Library</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <RecentBooks />
+      <RecentBooks limit={5} />
     </Layout>
   )
 }

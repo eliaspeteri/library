@@ -2,7 +2,7 @@
 /* Services */
 import axios, { AxiosResponse } from "axios"
 /* Semantic UI */
-import { Container, Header, List } from "semantic-ui-react"
+import { Container, Header, List, Segment } from "semantic-ui-react"
 /* Next.js components */
 import Link from "next/link"
 /* Components */
@@ -11,11 +11,14 @@ import ErrorBoundary from "./ErrorBoundary"
 import { BookProps } from "../types"
 /* React */
 import React from "react"
+import useSWR from "swr"
 
-const fetcher = (url: string): Promise<any> =>
+const fetcher = (url: string): Promise<Record<string, unknown>> =>
   axios.get(url).then((res: AxiosResponse) => res.data)
+
 interface Props {
   recentBooks?: [BookProps]
+  limit?: number
 }
 
 /**
@@ -23,62 +26,57 @@ interface Props {
  * @param books Books found in the database to render in a list.
  * @returns JSX.Element
  */
-function renderBookList(books: BookProps[]): JSX.Element {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function renderBookList(books, error: any): JSX.Element {
   return (
-    <>
-      {books
-        .sort((a: BookProps, b: BookProps) => (a.title > b.title ? 1 : -1))
-        .map(
-          ({ author, id, title }: BookProps): JSX.Element => (
-            <List.Item key={id}>
-              <Link href={`/books/${id}`}>
-                <a>
-                  <i>{title}</i> by <b>{author}</b>
-                </a>
-              </Link>
-            </List.Item>
-          )
-        )}
-    </>
+    <Segment>
+      {error ? (
+        <Segment>Error loading recently added books.</Segment>
+      ) : (
+        <List size={"huge"} divided relaxed>
+          {books
+            .sort((a: BookProps, b: BookProps) => (a.title > b.title ? 1 : -1))
+            .map(
+              ({ author, id, title }: BookProps): JSX.Element => (
+                <List.Item key={id}>
+                  <Link href={`/books/${id}`}>
+                    <a>
+                      <i>{title}</i> by <b>{author}</b>
+                    </a>
+                  </Link>
+                </List.Item>
+              )
+            )}
+        </List>
+      )}
+    </Segment>
   )
 }
 
 /**
  * Displays books recently added into the database.
- * @param recentBooks An array of books recently added to the database.
+ * @param limit How many items should be fetched from the API
  * @returns JSX.Element
  */
-export default function RecentBooks({ recentBooks }: Props): JSX.Element {
+export default function RecentBooks({ limit }: Props): JSX.Element {
+  const { data, error } = useSWR(
+    `https://eliaspeteri-library-back.herokuapp.com/api/books?limit=${limit}`,
+    fetcher
+  )
   return (
     <>
       <Header as="h2">Recent Books added by readers like you</Header>
       <ErrorBoundary>
-        <List size={"huge"}>
-          {recentBooks ? (
-            renderBookList(recentBooks)
-          ) : (
-            <Container>
-              There doesn&apos;t seem to be anything new here. Maybe go check
-              out if there&apos;s any new books to read? You can also add your
-              own for others to find if you don&apos;t find what you like.
-            </Container>
-          )}
-        </List>
+        {data ? (
+          renderBookList(data, error)
+        ) : (
+          <Container>
+            There doesn&apos;t seem to be anything new here. Maybe go check out
+            if there&apos;s any new books to read? You can also add your own for
+            others to find if you don&apos;t find what you like.
+          </Container>
+        )}
       </ErrorBoundary>
     </>
   )
-}
-
-export async function getStaticProps(): Promise<{
-  props: { recentBooks: BookProps[] }
-}> {
-  const recentBooks: BookProps[] = await fetcher(
-    "https://eliaspeteri-library-back.herokuapp.com/api/books?limit=10"
-  )
-
-  return {
-    props: {
-      recentBooks
-    }
-  }
 }
