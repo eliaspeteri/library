@@ -7,7 +7,7 @@ import { IBook } from "../types"
  */
 const useResource = (url: string) => {
   const getAll = async () => {
-    const res: AxiosResponse<IBook[]> = await axios.get(url)
+    const res: AxiosResponse = await axios.get(url)
     return res.data
   }
 

@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* Services */
-import axios, { AxiosResponse } from "axios"
 /* Next.js components */
 import Head from "next/head"
 /* Components */
@@ -11,6 +9,10 @@ import { Segment, Header } from "semantic-ui-react"
 import { BookProps } from "../types"
 /* React */
 import React from "react"
+/* Hooks */
+import useSWR from "swr"
+/* Services */
+import axios, { AxiosResponse } from "axios"
 
 interface Props {
   books: BookProps[]
@@ -39,12 +41,20 @@ export function BookList({ books }: Props): JSX.Element {
   )
 }
 
+const fetcher = (url: string): Promise<BookProps[]> =>
+  axios.get(url).then((res: AxiosResponse) => res.data)
+
 /**
  * Renders a list of books with the author, title and a short blurb
  * @param allBooksData all books fetched from the database with getStaticProps
  * @returns JSX.Element
  */
-export default function Books({ books }: Props): JSX.Element {
+export default function Books(): JSX.Element {
+  const { data, error } = useSWR(
+    "https://eliaspeteri-library-back.herokuapp.com/api/books",
+    fetcher
+  )
+
   return (
     <Layout>
       <Head>
@@ -52,25 +62,9 @@ export default function Books({ books }: Props): JSX.Element {
       </Head>
       <Segment>
         <Header as="h1">Books</Header>
-        <BookList books={books} />
+        {error ? <Segment>Failed to load books.</Segment> : null}
+        {data ? <BookList books={data} /> : <Segment>Loading...</Segment>}
       </Segment>
     </Layout>
   )
-}
-
-const fetcher = (url: string): Promise<any> =>
-  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-  axios.get(url).then((res: AxiosResponse): any => res.data)
-
-export async function getStaticProps(): Promise<{
-  props: { books: BookProps[] }
-}> {
-  const books: BookProps[] = await fetcher(
-    "https://eliaspeteri-library-back.herokuapp.com/api/books"
-  )
-  return {
-    props: {
-      books
-    }
-  }
 }
