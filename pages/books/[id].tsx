@@ -12,6 +12,29 @@ import useSWR from "swr"
 import { NextRouter, useRouter } from "next/router"
 import { Segment } from "semantic-ui-react"
 
+interface Props {
+  author: string
+  description?: string
+  id: string
+  title: string
+}
+
+export function renderBook({
+  author,
+  description,
+  id,
+  title
+}: Props): JSX.Element {
+  return (
+    <Segment>
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <Book author={author} description={description} id={id} title={title} />
+    </Segment>
+  )
+}
+
 const fetcher = (url: string): Promise<Record<string, unknown>> =>
   axios.get(url).then((res: AxiosResponse) => res.data)
 
@@ -30,17 +53,7 @@ export default function Id(): JSX.Element {
   return (
     <Layout>
       {data ? (
-        <Segment>
-          <Head>
-            <title>{data.title}</title>
-          </Head>
-          <Book
-            author={data.author}
-            description={data.description}
-            id={data.id}
-            title={data.title}
-          />
-        </Segment>
+        renderBook(data)
       ) : (
         <Segment>Error loading a book. {error}</Segment>
       )}
