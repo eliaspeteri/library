@@ -3,6 +3,7 @@
 import Head from "next/head"
 /* Components */
 import { Book, Layout } from "../../components"
+import { Segment } from "semantic-ui-react"
 /* React */
 import React from "react"
 /* Services */
@@ -10,27 +11,19 @@ import axios, { AxiosResponse } from "axios"
 /* Hooks */
 import useSWR from "swr"
 import { NextRouter, useRouter } from "next/router"
-import { Segment } from "semantic-ui-react"
 
-interface Props {
-  author: string
-  description?: string
-  id: string
-  title: string
-}
-
-export function renderBook({
-  author,
-  description,
-  id,
-  title
-}: Props): JSX.Element {
+export function renderBook(book: Record<string, any>): JSX.Element {
   return (
     <Segment>
       <Head>
-        <title>{title}</title>
+        <title>{book.title}</title>
       </Head>
-      <Book author={author} description={description} id={id} title={title} />
+      <Book
+        author={book.author}
+        description={book.description}
+        id={book.id}
+        title={book.title}
+      />
     </Segment>
   )
 }
