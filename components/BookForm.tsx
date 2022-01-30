@@ -26,13 +26,11 @@ export default function BookForm({
   const [newTitle, setTitle] = useState(title)
   const [newAuthor, setAuthor] = useState(author)
   const [newDescription, setDescription] = useState(description)
-
   const bookService = useResource(
     "https://eliaspeteri-library-back.herokuapp.com/api/books"
   )
 
   const toastUpdate: (newMsg: string) => void = useToastUpdate()
-  toastUpdate("test-message")
   const handleSubmit = async (): Promise<void> => {
     event?.preventDefault()
     const recentBooks: [Omit<IBook, "id">] =
@@ -60,6 +58,7 @@ export default function BookForm({
   const handleDelete = async (): Promise<void> => {
     try {
       await bookService.remove(id)
+      toastUpdate("Success removing a book!")
     } catch (error) {
       toastUpdate(`Error removing the book: ${(error as any).message}`)
     }
@@ -72,6 +71,7 @@ export default function BookForm({
         description: newDescription,
         title: newTitle
       })
+      toastUpdate("Success updating a book!")
     } catch (error) {
       toastUpdate(`Error updating the book: ${(error as any).message}`)
     }
@@ -112,6 +112,7 @@ export default function BookForm({
           />
         </Form.Field>
         <Button
+          color="green"
           disabled={!id && newTitle && newAuthor ? false : true}
           onClick={handleSubmit}
         >
@@ -123,7 +124,7 @@ export default function BookForm({
           }
           onClick={handleUpdate}
         >
-          Save
+          Update
         </Button>
         <Button disabled={id ? false : true} onClick={handleDelete}>
           Delete
