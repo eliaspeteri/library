@@ -1,12 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* Semantic UI */
 import { Button, Container, Divider, Form } from "semantic-ui-react"
-import { ChangeEvent, useState } from "react"
 /* Hooks */
 import useResource from "../hooks/useResource"
+import { useToastUpdate } from "../contexts/ToastContext"
 /* Types */
 import { IBook } from "../types"
 /* React */
-import React from "react"
+import React, { ChangeEvent, useState } from "react"
 
 /**
  * A basic form to add, edit and delete books in the database.
@@ -30,6 +31,8 @@ export default function BookForm({
     "https://eliaspeteri-library-back.herokuapp.com/api/books"
   )
 
+  const toastUpdate: (newMsg: string) => void = useToastUpdate()
+  toastUpdate("test-message")
   const handleSubmit = async (): Promise<void> => {
     event?.preventDefault()
     const recentBooks: [Omit<IBook, "id">] =
@@ -42,23 +45,36 @@ export default function BookForm({
     window.localStorage.setItem("newBook", JSON.stringify(newBook))
     recentBooks.push(newBook)
     window.localStorage.setItem("recentBooks", JSON.stringify(recentBooks))
-    await bookService.create({
-      author: newAuthor,
-      description: newDescription,
-      title: newTitle
-    })
+    try {
+      await bookService.create({
+        author: newAuthor,
+        description: newDescription,
+        title: newTitle
+      })
+      toastUpdate("Success adding a new book!")
+    } catch (error) {
+      toastUpdate(`Error adding a new book: ${(error as any).message}`)
+    }
   }
 
   const handleDelete = async (): Promise<void> => {
-    await bookService.remove(id)
+    try {
+      await bookService.remove(id)
+    } catch (error) {
+      toastUpdate(`Error removing the book: ${(error as any).message}`)
+    }
   }
 
   const handleUpdate = async (): Promise<void> => {
-    await bookService.update(id, {
-      author: newAuthor,
-      description: newDescription,
-      title: newTitle
-    })
+    try {
+      await bookService.update(id, {
+        author: newAuthor,
+        description: newDescription,
+        title: newTitle
+      })
+    } catch (error) {
+      toastUpdate(`Error updating the book: ${(error as any).message}`)
+    }
   }
 
   return (

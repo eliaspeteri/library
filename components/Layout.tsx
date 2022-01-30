@@ -1,5 +1,6 @@
 /* Components */
 import Navbar from "./Navbar"
+import Toast from "./Toast"
 /* React */
 import React from "react"
 
@@ -16,6 +17,7 @@ export default function Layout({ children }: Props): JSX.Element {
   return (
     <>
       <Navbar />
+      <Toast />
       <main>{children}</main>
     </>
   )
