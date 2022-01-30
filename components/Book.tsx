@@ -9,10 +9,10 @@ import { BookForm } from "../components"
 import React from "react"
 
 interface Props {
-  author: string
-  description?: string
-  id: string
-  title: string
+  author: string | unknown
+  description?: string | unknown
+  id: string | unknown
+  title: string | unknown
 }
 /**
  * A component to render the details of a single book.
