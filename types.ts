@@ -1,8 +1,8 @@
 export interface IBook {
-  id?: string | unknown
-  author: string | unknown
-  description?: string | unknown
-  title: string | unknown
+  id?: string
+  author: string
+  description?: string
+  title: string
 }
 
 export interface BookProps {
