@@ -3,55 +3,47 @@
 import Head from "next/head"
 /* Components */
 import { Book, Layout } from "../../components"
-/* Helpers */
-import { getAllBookIds, getBookData } from "../../lib/books"
-/* Types */
-import { GetStaticProps, GetStaticPaths } from "next"
-import { IBook } from "../../types"
 /* React */
 import React from "react"
+/* Services */
+import axios, { AxiosResponse } from "axios"
+/* Hooks */
+import useSWR from "swr"
+import { NextRouter, useRouter } from "next/router"
+import { Segment } from "semantic-ui-react"
+
+const fetcher = (url: string): Promise<Record<string, unknown>> =>
+  axios.get(url).then((res: AxiosResponse) => res.data)
 
 /**
  * Produce and return a Book component specific to the book found with bookData.id
  * @param bookData Book related data as outlined by IBook in /types
  * @returns JSX.Element
  */
-export default function Id({ bookData }: { bookData: IBook }): JSX.Element {
+export default function Id(): JSX.Element {
+  const router: NextRouter = useRouter()
+  const { id } = router.query
+  const { data, error } = useSWR(
+    `https://eliaspeteri-library-back.herokuapp.com/api/books/${id}`,
+    fetcher
+  )
   return (
     <Layout>
-      <Head>
-        <title>{bookData.title}</title>
-      </Head>
-      <Book
-        author={bookData.author}
-        description={bookData.description}
-        id={bookData.id}
-        title={bookData.title}
-      />
+      {data ? (
+        <Segment>
+          <Head>
+            <title>{data.title}</title>
+          </Head>
+          <Book
+            author={data.author}
+            description={data.description}
+            id={data.id}
+            title={data.title}
+          />
+        </Segment>
+      ) : (
+        <Segment>Error loading a book. {error}</Segment>
+      )}
     </Layout>
   )
-}
-
-export const getStaticPaths: GetStaticPaths = async (): Promise<{
-  paths: any
-  fallback: any
-}> => {
-  // Return a list of possible values for id
-  const paths: any = await getAllBookIds()
-  return {
-    paths,
-    fallback: false
-  }
-}
-
-export const getStaticProps: GetStaticProps = async ({
-  params
-}): Promise<{ props: { bookData: any } }> => {
-  // Fetch necessary data for the book using params.id
-  const bookData: IBook = await getBookData(params.id as string)
-  return {
-    props: {
-      bookData
-    }
-  }
 }
