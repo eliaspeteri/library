@@ -27,10 +27,13 @@ interface Props {
  * @returns JSX.Element
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function renderBookList(books, error: any): JSX.Element {
+function renderBookList(
+  books: Record<string, any> | BookProps[],
+  error: any
+): JSX.Element {
   return (
     <Segment>
-      {error ? (
+      {error || !books ? (
         <Segment>Error loading recently added books.</Segment>
       ) : (
         <List size={"huge"} divided relaxed>
