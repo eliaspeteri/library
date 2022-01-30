@@ -17,7 +17,7 @@ const Toast = (): JSX.Element => {
     setTimeout((): void => {
       toastUpdate("")
     }, 5 * 1000)
-  })
+  }, [toastMsg, toastUpdate])
 
   const showNotification = (message: string): ReactText =>
     toast.info(message, { style: { border: "1px solid white" } })
