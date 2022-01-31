@@ -43,6 +43,7 @@ export default function BookForm({
       })
       toastUpdate("Added a book!")
     } catch (error) {
+      toastUpdate("Error adding a book. We've been notified.")
       console.log((error as any).message)
     }
   }
@@ -52,6 +53,7 @@ export default function BookForm({
       await bookService.remove(id)
       toastUpdate(`Removed a book!`)
     } catch (error) {
+      toastUpdate("Error removing a book. We've been notified.")
       console.log((error as any).message)
     }
   }
@@ -65,6 +67,7 @@ export default function BookForm({
       })
       toastUpdate("Updated a book!")
     } catch (error) {
+      toastUpdate("Error updating a book. We've been notified.")
       console.log((error as any).message)
     }
   }
