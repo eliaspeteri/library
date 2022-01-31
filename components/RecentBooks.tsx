@@ -17,7 +17,7 @@ const fetcher = (url: string): Promise<Record<string, unknown>> =>
   axios.get(url).then((res: AxiosResponse) => res.data)
 
 interface Props {
-  recentBooks?: [BookProps]
+  recentBooks?: BookProps[]
   limit?: number
 }
 

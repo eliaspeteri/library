@@ -3,6 +3,7 @@ export interface IBook {
   author: string
   description?: string
   title: string
+  whenCreated?: Date
 }
 
 export interface BookProps {
@@ -10,4 +11,5 @@ export interface BookProps {
   author: string
   description?: string
   title: string
+  whenCreated?: Date
 }
