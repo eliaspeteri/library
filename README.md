@@ -50,58 +50,39 @@ As per original specification, the UI is created with React through Next.js, and
 
 ### Required programs
 
-For this application, the requirement is Node 12 or newer. There are many guides online for installing Node. I personally recommend [this one from Microsoft](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows).
+For this application, the requirement is Node 12 or newer. There are many guides online for installing Node. I personally recommend [this one from Microsoft](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows). NB: I've moved to using Node 16, so in case the app ceases to work in older versions, [write a new issue in the repository page on Github](https://github.com/eliaspeteri/library/issues).
 
 ### Installing the application
 
 After installing Node (hopefully successfully), the order of installation goes as such:
 
-1. Compiling the server. This is done in the root folder with `npm run server:install:compile`, which installs the dependencies for the server and compiles TypeScript code back into regular JS.
-2. Temporarily starting the server in order to build the frontend. This is done by running `npm --prefix ./server/ start`. Keep this running for now.
-3. Open another terminal in the project root folder, and run `npm run front:install:build` to compile the frontend. The reason we want the backend running is for Next.js to create static pages from the data the API returns in case the backend goes down.
-4. After the frontend has completed building, you may shutdown the server.
-
-### Final prerequisites
-
-If you wish to run this on your own machine, be prepared to create a free MongoDB Atlas account if you don't already have one. After, you should create a _.env_-file, with a structure something like below, replacing all the details within brackets with your own. Note that the port is where the server will run, though you can change this if you wish to run it on a different port.
-
-`MONGODB_URI=mongodb+srv://<user>:<password>@<cluster address>/library?retryWrites=true&w=majority PORT=8080`
+1. Building the application. This is done by running _npm run build_ in the root of the project folder with a terminal of your choice.
+2. ???
+3. Profit.
 
 ## Executing
 
 ### Production
 
-To run the frontend and backend in production mode, like when deploying to Heroku or other hosting providers, you want to run _start:production_ which starts both sides in production mode. After, you can navigate to domain you deployed the application(s) to see if they've appeared there.
+To run the frontend in production mode, like when deploying to Heroku or other hosting providers, you can run _npm start_ which starts the app in production mode. After, you can navigate to the domain you deployed the application to in order to see if it has appeared there.
 
 ### Development
 
-If you want to develop this application further, or just see what's going on under the hood, you want to run _start:dev_ in order to really see all the magic. This starts concurrently which in respect renders all the logs and errors in a single terminal for ease of interfacing with the information.
+If you want to develop this application further, or just see what's going on under the hood, you can run _npm run dev_ in order to really see all the magic.
 
 ### Heroku deployment
 
-This application _should_ be available at [https://library-ex.herokuapp.com/](https://library-ex.herokuapp.com/) at the time of writing, and free to browse by anyone. If not, please refer [here to see how to get your own copy](#installation).
+This application is now available at [https://library-ex.herokuapp.com/](https://library-ex.herokuapp.com/), and free to browse by anyone. If not, please refer [here to see how to get your own copy](#installation).
 
 ## Troubleshooting
 
-## Frontend refuses to build
+### npm start doesn't work
 
-You need to compile the server first from TS to JS and run it while building the frontend to collect API data for static pages. Refer [here](#installing-the-application) for additional information.
-
-### Neither frontend or backend will run
-
-Run `npm run front:install:build` and `npm run server:install:compile` in the project root folder one after the other. You can also combine them with an `&&` operator to make them run together!
-
-### Backend will not run or is outdated
-
-You need to compile the TypeScript project files back into CommonJS for Node to be able to read them. You can do this by simply running `npm run build`.
+Make sure you built the app at least once before trying to run it in production mode. You can do this by running _npm run build_ in a terminal while in the root folder.
 
 ### Heroku instance is down
 
 This is most likely some error I have not yet been able to fix. You can always spin up a local edition to try the application out.
-
-### Mongoose can't connect to a database
-
-Remember to add your connection URI to the environment variable file.
 
 ## Closing words
 

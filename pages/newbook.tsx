@@ -3,7 +3,7 @@ import Head from "next/head"
 /* Components */
 import { BookForm, Layout } from "../components"
 /* Semantic UI */
-import { Header } from "semantic-ui-react"
+import { Header, Icon } from "semantic-ui-react"
 /* React */
 import React from "react"
 
@@ -17,7 +17,10 @@ export default function NewBook(): JSX.Element {
       <Head>
         <title>New book</title>
       </Head>
-      <Header as="h1">New book</Header>
+      <Header as="h2" textAlign="center">
+        <Icon name="write" />
+        New book
+      </Header>
       <BookForm id={""} author={""} description={""} title={""} />
     </Layout>
   )

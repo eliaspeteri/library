@@ -2,7 +2,7 @@
 /* Services */
 import axios, { AxiosResponse } from "axios"
 /* Semantic UI */
-import { Container, Header, List, Segment } from "semantic-ui-react"
+import { Header, List, Segment } from "semantic-ui-react"
 /* Next.js components */
 import Link from "next/link"
 /* Components */
@@ -17,7 +17,7 @@ const fetcher = (url: string): Promise<Record<string, unknown>> =>
   axios.get(url).then((res: AxiosResponse) => res.data)
 
 interface Props {
-  recentBooks?: [BookProps]
+  recentBooks?: BookProps[]
   limit?: number
 }
 
@@ -70,16 +70,19 @@ export default function RecentBooks({ limit }: Props): JSX.Element {
   )
   return (
     <>
-      <Header as="h2">Recent Books added by readers like you</Header>
+      <Header as="h2" textAlign="center">
+        Recent books added by readers like you
+      </Header>
       <ErrorBoundary>
         {data ? (
           renderBookList(data, error)
         ) : (
-          <Container>
+          <Segment>
             There doesn&apos;t seem to be anything new here. Maybe go check out
-            if there&apos;s any new books to read? You can also add your own for
-            others to find if you don&apos;t find what you like.
-          </Container>
+            if there&apos;s <Link href="/books">any new books to read?</Link>{" "}
+            You can also add your own for others to find if you don&apos;t find
+            what you like.
+          </Segment>
         )}
       </ErrorBoundary>
     </>
