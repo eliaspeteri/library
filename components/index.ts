@@ -1,5 +1,6 @@
 export { default as Book } from "./Book"
 export { default as BookForm } from "./BookForm"
+export { default as BookList } from "./BookList"
 export { default as ErrorBoundary } from "./ErrorBoundary"
 export { default as Layout } from "./Layout"
 export { default as Navbar } from "./Navbar"
