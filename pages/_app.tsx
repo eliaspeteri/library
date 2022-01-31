@@ -15,7 +15,6 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <ToastProvider>
       <Navbar />
-
       <Layout>
         <Component {...pageProps} />
       </Layout>
